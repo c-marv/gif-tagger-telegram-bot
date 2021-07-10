@@ -1,0 +1,22 @@
+{
+  "name": "gif-tagger-telegram-bot",
+  "version": "1.0.0",
+  "description": "Simple bot for store personal gifs, attach tags to them, and using the bot as a gif searcher based on the tags.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "watch": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.13",
+    "telegraf": "^4.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

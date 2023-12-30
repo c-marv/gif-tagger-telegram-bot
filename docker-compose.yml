@@ -18,9 +18,9 @@ services:
     ports: 
       - 27017:27017
     environment: 
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_ROOT_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_ROOT_PASS}
-      MONGO_INITDB_DATABASE: ${MONGO_DB_NAME}
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+      MONGO_INITDB_DATABASE: gif_tagger_db
     # command: mongod --quiet --logpath /dev/null 
 networks:
   bot_network:

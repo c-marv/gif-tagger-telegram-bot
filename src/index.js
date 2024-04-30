@@ -32,9 +32,9 @@ if (config.MODE === 'express') {
   });
   app.listen(config.PORT, () => console.log(`Bot server running on port ${config.PORT}`));
 }
-if (config.MODE === 'local') {
+if (config.MODE === 'bot') {
   bot.launch();
-  console.log(`⚡ gif tagger bot running locally ...`);
+  console.log(`⚡ gif tagger bot running in bot mode ...`);
   process.once('SIGINT', () => bot.stop('SIGINT'))
   process.once('SIGTERM', () => bot.stop('SIGTERM'))
 }

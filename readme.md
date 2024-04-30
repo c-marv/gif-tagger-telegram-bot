@@ -20,5 +20,5 @@ Simple bot for store personal gifs, attach tags to them, and using the bot as a 
 ```shell
 $ cp .env.example .env # after copy fill the environment variables
 $ npm install
-$ npm run start:local
+$ npm run start:bot
 ```

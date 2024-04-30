@@ -5,11 +5,11 @@
   "scripts": {
     "start": "npm run start:azure",
     "start:azure": "MODE=azure func start",
-    "start:local": "MODE=local node src/index.js",
+    "start:bot": "MODE=bot node src/index.js",
     "start:express": "MODE=express nodemon src/index.js",
     "watch:azure": "MODE=azure func start",
     "watch": "npm run watch:azure",
-    "watch:local": "MODE=local nodemon src/index.js",
+    "watch:bot": "MODE=bot nodemon src/index.js",
     "watch:express": "MODE=express nodemon src/index.js"
   },
   "dependencies": {

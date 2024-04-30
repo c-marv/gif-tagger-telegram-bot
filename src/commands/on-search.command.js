@@ -2,7 +2,7 @@ const { TelegramResource } = require("../db");
 
 /**
  * Handles the inline search query and returns matching GIFs based on tags.
- * @param {Object} ctx - The context object containing information about the inline query.
+ * @param {import('telegraf').Context} ctx - The context object containing information about inline query.
  * @returns {Promise<Array<Object>>} - A promise that resolves to an array of GIF objects.
  */
 module.exports = async (ctx) => {

@@ -11,16 +11,22 @@ module.exports = async (ctx) => {
     return ctx.answerInlineQuery([]);
   }
 
+  const words = ctx.inlineQuery.query.split(/\s+/);
+
   const currentPage = ctx.inlineQuery.offset ? parseInt(ctx.inlineQuery.offset) : 0;
+
+  const tagsQuery = words.map(word => ({
+    tags: {
+      $elemMatch: {
+        $regex: '^' + word,
+        $options: 'i',
+      }
+    }
+  }));
 
   const query = {
     userId: ctx.inlineQuery.from.id,
-    tags: {
-      $elemMatch: {
-        $regex: '^' + ctx.inlineQuery.query,
-        $options: 'i',
-      }
-    },
+    $and: tagsQuery,
   };
 
   const result = await TelegramResource.find(query).skip(currentPage * RESULT_LIMIT).limit(RESULT_LIMIT);

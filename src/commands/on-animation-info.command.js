@@ -31,7 +31,7 @@ module.exports = async (ctx) => {
   await ctx.replyWithMarkdownV2(result, {
     reply_to_message_id: ctx.message.reply_to_message.message_id,
     ...Markup.inlineKeyboard([
-      Markup.button.callback('Delete Message Info', 'delete_info_action'),
+      Markup.button.callback('Delete Message Info', 'delete_message_info_action'),
     ])
   });
 

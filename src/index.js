@@ -10,12 +10,20 @@ const commands = require('./commands');
 const bot = new Telegraf(config.BOT_TOKEN, {
   telegram: {
     webhookReply: true,
+    agent: new (require('https').Agent)({
+      family: 4, // Force IPv4
+      timeout: 30000
+    })
   }
 });
 
 db.connect(config.MONGO_DB_URI);
 
-bot.telegram.setWebhook(config.URL);
+// Only set webhook for express/webhook mode
+if (config.MODE === 'express' && config.URL) {
+  bot.telegram.setWebhook(config.URL);
+}
+
 bot.use(middlewares.auth);
 bot.start(commands.welcome);
 bot.command('info', commands.onAnimationInfo);

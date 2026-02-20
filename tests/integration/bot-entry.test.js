@@ -1,4 +1,4 @@
-jest.mock('../../src/config', () => ({ BOT_TOKEN: 'dummy', ALLOWED_USERS: ['alice'], MONGO_DB_URI: '', MODE: 'bot', PORT: 3000, URL: '' }));
+jest.mock('../../src/config', () => ({ BOT_TOKEN: 'dummy', ALLOWED_USERS: ['alice'], MONGO_DB_URI: '', MODE: 'test', PORT: 3000, URL: '' }));
 const app = require('../../src/index.js');
 const commands = require('../../src/commands');
 const db = require('../../src/db');

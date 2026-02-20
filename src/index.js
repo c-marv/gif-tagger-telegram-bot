@@ -7,6 +7,8 @@ const db = require('./db');
 const middlewares = require('./middlewares');
 const commands = require('./commands');
 
+const isTestMode = config.MODE === 'test' || process.env.NODE_ENV === 'test';
+
 const bot = new Telegraf(config.BOT_TOKEN, {
   telegram: {
     webhookReply: true,
@@ -17,10 +19,12 @@ const bot = new Telegraf(config.BOT_TOKEN, {
   }
 });
 
-db.connect(config.MONGO_DB_URI);
+if (!isTestMode) {
+  db.connect(config.MONGO_DB_URI);
+}
 
 // Only set webhook for express/webhook mode
-if (config.MODE === 'express' && config.URL) {
+if (config.MODE === 'express' && config.URL && !isTestMode) {
   bot.telegram.setWebhook(config.URL);
 }
 
@@ -41,11 +45,20 @@ if (config.MODE === 'express') {
   });
   app.listen(config.PORT, () => console.log(`Bot server running on port ${config.PORT}`));
 }
-if (config.MODE === 'bot') {
+if (config.MODE === 'bot' && !isTestMode) {
   bot.launch();
   console.log(`⚡ gif tagger bot running in bot mode ...`);
   process.once('SIGINT', () => bot.stop('SIGINT'))
   process.once('SIGTERM', () => bot.stop('SIGTERM'))
+}
+
+if (isTestMode) {
+  bot.botInfo = {
+    id: 0,
+    is_bot: true,
+    first_name: 'test',
+    username: 'test_bot'
+  };
 }
 
 module.exports = async function (update) {
